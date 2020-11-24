@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>2_1_Bootstrap_basic</title>
+    <style>
+        body>div>div {
+            min-height: 30vh;
+            margin-top: 10px;
+        }
+        
+        .row .col{
+            box-shadow: 0px 0px 1px black;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row bg-light">
+            <div class="col">
+                <h1>Bootstrap 4 resource</h1>
+                <ul>
+                    <li><a href="https://hackerthemes.com/bootstrap-cheatsheet/#list-group-item-info">Bootstrap 4 cheatsheet</a></li>
+                    <li><a href="https://www.w3schools.com/bootstrap/bootstrap_ref_all_classes.asp">Complete List of All Bootstrap Classes</a></li>
+                    <li><a href = "https://startbootstrap.com/snippets/">Bootstrap snippets from starBootstrap</a></li>
+                    <li><a href = "https://mdbootstrap.com/">Material designs for bootstrap</a></li>
+                    <li><a href="https://mdbootstrap.com/plugins/jquery/screen-scroller/">Bootstrap Full Screen Scroller</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h1>Text colors</h1>
+                <span class="text-muted">.text-muted</span>
+                <span class="text-primary">.text-primary</span>
+                <span class="text-success">.text-success</span>
+                <span class="text-info">.text-info</span>
+                <span class="text-warning">.text-warning</span>
+                <span class="text-danger">.text-danger</span>
+                <span class="text-secondary">.text-secondary</span>
+                <span class="text-dark">.text-dark</span>
+                <span class="text-body">.text-body</span>
+                <span class="text-light">.text-light</span>
+            </div>
+            <div class="col">
+                <h1>Background-color</h1>
+                <div class="p-1 bg-primary text-white">.bg-primary</div>
+                <div class="p-1 bg-secondary text-white">.bg-secondary</div>
+                <div class="p-1 bg-success text-white">.bg-success</div>
+                <div class="p-1 bg-danger text-white">.bg-danger</div>
+                <div class="p-1 bg-warning text-dark">.bg-warning</div>
+                <div class="p-1 bg-info text-white">.bg-info</div>
+                <div class="p-1 bg-light text-dark">.bg-light</div>
+                <div class="p-1 bg-dark text-white">.bg-dark</div>
+                <div class="p-1 bg-white text-dark">.bg-white</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h1>Spacing</h1>
+                <p>Where <em>property</em> is one of:</p>
+
+                <ul>
+                    <li><code class="highlighter-rouge">m</code> - for classes that set <code class="highlighter-rouge">margin</code></li>
+                    <li><code class="highlighter-rouge">p</code> - for classes that set <code class="highlighter-rouge">padding</code></li>
+                </ul>
+
+                <p>Where <em>sides</em> is one of:</p>
+
+                <ul>
+                    <li><code class="highlighter-rouge">t</code> - for classes that set <code class="highlighter-rouge">margin-top</code> or <code class="highlighter-rouge">padding-top</code></li>
+                    <li><code class="highlighter-rouge">b</code> - for classes that set <code class="highlighter-rouge">margin-bottom</code> or <code class="highlighter-rouge">padding-bottom</code></li>
+                    <li><code class="highlighter-rouge">l</code> - for classes that set <code class="highlighter-rouge">margin-left</code> or <code class="highlighter-rouge">padding-left</code></li>
+                    <li><code class="highlighter-rouge">r</code> - for classes that set <code class="highlighter-rouge">margin-right</code> or <code class="highlighter-rouge">padding-right</code></li>
+                    <li><code class="highlighter-rouge">x</code> - for classes that set both <code class="highlighter-rouge">*-left</code> and <code class="highlighter-rouge">*-right</code></li>
+                    <li><code class="highlighter-rouge">y</code> - for classes that set both <code class="highlighter-rouge">*-top</code> and <code class="highlighter-rouge">*-bottom</code></li>
+                    <li>blank - for classes that set a <code class="highlighter-rouge">margin</code> or <code class="highlighter-rouge">padding</code> on all 4 sides of the element</li>
+                </ul>
+
+                <p>Where <em>size</em> is one of:</p>
+
+                <ul>
+                    <li><code class="highlighter-rouge">0</code> - for classes that eliminate the <code class="highlighter-rouge">margin</code> or <code class="highlighter-rouge">padding</code> by setting it to <code class="highlighter-rouge">0</code></li>
+                    <li><code class="highlighter-rouge">1</code> - (by default) for classes that set the <code class="highlighter-rouge">margin</code> or <code class="highlighter-rouge">padding</code> to <code class="highlighter-rouge">$spacer * .25</code></li>
+                    <li><code class="highlighter-rouge">2</code> - (by default) for classes that set the <code class="highlighter-rouge">margin</code> or <code class="highlighter-rouge">padding</code> to <code class="highlighter-rouge">$spacer * .5</code></li>
+                    <li><code class="highlighter-rouge">3</code> - (by default) for classes that set the <code class="highlighter-rouge">margin</code> or <code class="highlighter-rouge">padding</code> to <code class="highlighter-rouge">$spacer</code></li>
+                    <li><code class="highlighter-rouge">4</code> - (by default) for classes that set the <code class="highlighter-rouge">margin</code> or <code class="highlighter-rouge">padding</code> to <code class="highlighter-rouge">$spacer * 1.5</code></li>
+                    <li><code class="highlighter-rouge">5</code> - (by default) for classes that set the <code class="highlighter-rouge">margin</code> or <code class="highlighter-rouge">padding</code> to <code class="highlighter-rouge">$spacer * 3</code></li>
+                    <li><code class="highlighter-rouge">auto</code> - for classes that set the <code class="highlighter-rouge">margin</code> to auto</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h2>float-left and right withou clearfix parent</h2>
+                <div class="bg-info clearfix">
+                    <button type="button" class="btn btn-secondary float-left">Example Button floated left</button>
+                    <button type="button" class="btn btn-secondary float-right">Example Button floated right</button>
+                </div>
+
+            </div>
+            <div class="col">
+                <h2>float-left and right without clearfix parent</h2>
+                <div class="bg-info">
+                    <button type="button" class="btn btn-secondary float-left">Example Button floated left</button>
+                    <button type="button" class="btn btn-secondary float-right">Example Button floated right</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <h1>Flex-row</h1>
+                <div class="d-flex flex-row bg-secondary">
+                    <div class="p-2 bg-info">Flex item 1</div>
+                    <div class="p-2 bg-warning">Flex item 2</div>
+                    <div class="p-2 bg-primary">Flex item 3</div>
+
+                </div>
+            </div>
+            <div class="col">
+                <h1>Flex-row-reverse</h1>
+                <div class="d-flex flex-row-reverse bg-secondary">
+                    <div class="p-2 bg-info">Flex item 1</div>
+                    <div class="p-2 bg-warning">Flex item 2</div>
+                    <div class="p-2 bg-primary">Flex item 3</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h1>Embedding iframe</h1>
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div>
+            <h1>Border</h1>
+            <div style="height:100px">
+                <div class="h-100 d-inline-block border-0 border-primary" style="width:100px;background-color:beige;"></div>
+                <div class="h-100 d-inline-block border-top-0" style="width:100px;background-color:beige"></div>
+                <div class="h-100 d-inline-block border-right-0" style="width:100px;background-color:beige"></div>
+                <div class="h-100 d-inline-block border-bottom-0" style="width:100px;background-color:beige"></div>
+                <div class="h-100 d-inline-block border-left-0" style="width:100px;background-color:beige"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body></html>

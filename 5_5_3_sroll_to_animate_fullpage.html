@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <!--    <link rel="stylesheet" href="css/animate.css">-->
+
+    <style>
+        .fullpage {
+            visibility: hidden;
+        }
+
+        .slideup {
+            animation-name: slideup;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            visibility: visible;
+            position: fixed;
+            top: 0px;
+        }
+
+        .slideout {
+            animation-name: slideout;
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            position: relative;
+        }
+
+        @keyframes slideup {
+            0% {
+                /*                opacity: 0;*/
+                transform: translateY(70%);
+            }
+            100% {
+                /*                opacity: 1;*/
+                transform: translateY(0%);
+
+            }
+        }
+
+        @keyframes slideout {
+            0% {
+                opacity: 1;
+                transform: translateY(80%);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(0%);
+
+            }
+        }
+
+
+
+        .fix_bg {
+            /*                        background-attachment: fixed;*/
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+
+        .fp {
+            padding: 0px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container-fluid" style="height:100vh;background-color:dimgray"></div>
+
+    <div class="fp" style="height:100vh;">
+        <div class="fp fullpage fix_bg" style="height:100vh;width:100vw;background-image:url('assets/123.png');">
+            <h1>div1</h1>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="height:100vh;width:100vw;z-index:100;background-color:dimgray">
+        <h1>div1.1</h1>
+    </div>
+
+    <div class="fp" style="height:100vh;">
+        <div class="fp fullpage fix_bg" style="height:100vh;width:100vw;background-image:url('assets/bg2.jpg')">
+            <h1>div2</h1>
+        </div>
+    </div>
+    <div class="fp" style="height:100vh;">
+        <div class="fp fullpage fix_bg" style="height:100vh;width:100vw;background-image:url('assets/123.png')">
+            <h1>div3</h1>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="height:100vh;background-color:dimgray"></div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+
+
+    <script>
+        $(function() {
+            $(window).scroll(function() {
+                var winh = $(window).height();
+                var scrolled = $(window).scrollTop();
+                $(".fullpage").each(function() {
+                    var objpos = $(this).offset().top;
+                    if (scrolled > objpos - winh * 0.2 && scrolled < objpos + winh * 0.8) {
+                        $(this).addClass("slideup");
+                    }
+                    if (scrolled > objpos + winh * 0.8) {
+                        $(this).removeClass("slideup");
+                        $(this).addClass("slideout");
+                    }
+
+                    //                    if (scrolled > objpos) {
+                    //                        $(this).addClass("fixed");
+                    //                    } 
+                    //                    else {
+                    //                        $(this).removeClass("fixed");
+                    //                    }
+
+                    if (scrolled == 0) {
+                        $(this).removeClass("slideup");
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

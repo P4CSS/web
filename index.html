@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Web Tutorials</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!--Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Passero+One" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Rancho&effect=3d-float|3d">
+    <style>
+        .list-group-item.practice {
+            color:forestgreen;
+            background-color: palegreen;
+        }
+        .practice::after { content: " -- Practice";}
+
+        .list-group-item.next {
+            color:darkgoldenrod;
+            background-color: lightgoldenrodyellow;
+        }
+
+        .list-group-item.next::after { content: " -- Next";}
+        
+        
+        .list-group-item.skip {
+            color: gray;
+            background-color: lightgray;
+        }
+
+        .list-group-item.skip::after { 
+            content: " (Skip)";
+        }
+
+
+        .list-group-item.new {
+            background-color: lightyellow;
+        }
+
+        .list-group-item.new::after {
+            content: " -- New!";
+        }
+        .list-group-item.reference {
+            background-color: lightskyblue;
+            color:white;
+        }
+        .list-group-item.reference::after {
+            content: " -- Reference";
+        }
+
+        h2 {
+            color: dimgray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="jumbotron text-center">
+        <h1>Web storytelling</h1>
+    </div>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Slides and Materials</h2>
+                <div class="list-group">
+                    <a href="https://www.dropbox.com/sh/z0i278fngz4322l/AACTWwNuyyAfH-28iX40J-9Qa?dl=0" target="_blank" class="list-group-item">Download all matrials</a>
+                    <a href="https://paper.dropbox.com/doc/Web108-Rundown-GXiXbG2AL7qmsxWP1IDT9" target="_blank" class="list-group-item">Web108 Rundown</a>
+                    <a href="https://docs.google.com/presentation/d/1CES3vfQWxlxhnnxcQeXKIH1zuijFvmOMhviqR7fYpe4/edit?usp=sharing" target="_blank" class="list-group-item">(Slide) Web02. HTML+CSS</a>
+                    <a href="https://docs.google.com/presentation/d/1n8TbwMWRmRKqZL0Y0hhxDECKnMMl7m19jL0I47XFvD8/edit?usp=sharing" target="_blank" class="list-group-item">(Slide) Web03. Intro. to Bootstrap</a>
+                    <a href="https://docs.google.com/presentation/d/1iWIAoMnbvtgwPHHHnFD80qOdCXqRLVIle99X5kaB9sk/edit?usp=sharing" target="_blank" class="list-group-item">(Slide) Web04. jQuery</a>
+                    <a href="https://docs.google.com/presentation/d/1s8RWoxJKCzX4ukLY6PVBvPKxZx5iLZ1DwCDXcrQvJvs/edit?usp=sharing" target="_blank" class="list-group-item">(Slide) Web05. Scrolling</a>
+                    <a href="https://drive.google.com/open?id=1gHaYouGH_5Oeo-0BdRO1OwYpPpHk6nSC9Nxc7hgw-_Y" target="_blank" class="list-group-item">(Slide) d3 basic</a>
+                    <a href="https://drive.google.com/open?id=197O7V94ZsUU3nUCW9ARyPqx1gWVwEQKirEMgs8DIPE0" target="_blank" class="list-group-item">(Slide) geo map</a>
+                    
+                </div>
+                <h2>Useful resources</h2>
+                <div class="list-group">
+                    <a href="https://getbootstrap.com/docs/4.3/getting-started/introduction/#starter-template" target="_blank" class="list-group-item bg-danger text-white">getbootstrap starter template</a>
+                    <a href="https://code.jquery.com/" target="_blank" class="list-group=item">jquery cdn</a>
+                    <a href="https://www.w3schools.com/css/css_rwd_templates.asp" target="_blank" class="list-group-item">W3.CSS templates</a>
+                    <a href="https://www.w3schools.com/bootstrap/bootstrap_templates.asp" target="_blank" class="list-group-item">BS: bootstrap templates: w3school</a>
+                    <a href="https://startbootstrap.com/template-categories/all/" target="_blank" class="list-group-item">BS: bootstrap templates II</a>
+                    <a href="https://css-tricks.com/almanac/properties/b/box-shadow/" target="_blank" class="list-group-item">CSS: box-shadow examples</a>
+                    <a href="https://www.cssmatic.com/box-shadow" target="_blank" class="list-group-item">CSS: box-shadow generators</a>
+                    <a href="https://daneden.github.io/animate.css/" target="_blank" class="list-group-item">CSS: animate.css</a>
+                    <a href="http://cssanimate.com/" target="_blank" class="list-group-item">CSS: keyframe animation generator</a>
+                    <a href="http://www.clker.com/inc/svgedit/svg-editor.html" target="_blank" class="list-group-item">svg drawer I</a>
+                    <a href="https://www.janvas.com/v6.1/janvas_web_6.1/en/index.php" target="_blank" class="list-group-item">svg drawer II</a>
+                    <a href="http://vectorpaint.yaks.co.nz/" target="_blank" class="list-group-item">svg drawer III</a>
+                    <a href="http://geojson.io/#map=2/20.0/0.0" target="_blank" class="list-group-item">Map: geojson drawer</a>
+                    <a href="https://revealjs.com" target="_blank" class="list-group-item">Fullpage: reveal.js</a>
+                    <a href="https://alvarotrigo.com/fullPage/" target="_blank" class="list-group-item">Fullpage.js</a>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-8">
+
+
+                <h2>Sec. 1 HTML and CSS</h2>
+                <div class="list-group">
+                    <a href="1_main/main.html" target="_blank" class="list-group-item">1_main: Learning HTML and CSS</a>
+                </div>
+
+                <h2>Sec. 2 CSS</h2>
+                <div class="list-group">
+                    <a href="2_2_images_vignnete.html" target="_blank" class="list-group-item ">2_2_images_vignnete.html</a>
+                </div>
+
+                <h2>Sec. 3 Bootstrap</h2>
+                <div class="list-group">
+                    <a href="3_0_bs_template.html" target="_blank" class="list-group-item reference">3_0_bs_template.html</a>
+                    <a href="3_0_bootstrap_basic.html" target="_blank" class="list-group-item reference">3_0_bootstrap_basic.html</a>
+                    <a href="3_1_bs_images.html" target="_blank" class="list-group-item">3_1_bs_images.html: Displaying images by bootstrap</a>
+                    <a href="3_2_bs_twofixed.html" target="_blank" class="list-group-item">3_2 twofixed: Fixed background of two adjacent divs</a>
+                    <a href="3_3_bs_twofixed_content.html" target="_blank" class="list-group-item">3_3 fix_content: Fixed background with content over it</a>
+                    <a href="3_p1_long_orFix.html" target="_blank" class="list-group-item practice">3_p1 thinking: long or fixed background</a>
+                    <a href="3_boostrap/bt.html" target="_blank" class="list-group-item">An Example: Using bootstrap as CSS framework</a>
+                </div>
+
+                
+                <h2>Sec. 4 jquery</h2>
+                <div class="list-group">
+                    <a href="4_1_index_jquery.html" target="_blank" class="list-group-item">4_1 jqeury for index.html</a>
+                </div>
+                <div class="list-group">
+                    <a href="4_2_scroll2fix_bs.html" target="_blank" class="list-group-item">4_2 scroll2fix_bs: affix objects by bootstrap</a>
+                    <a href="4_2p_scroll2fix_bs.html" target="_blank" class="list-group-item practice">4_2p Practice: affix 2nd object by bootstrap</a>
+                    <a href="4_3_scroll2fix.html" target="_blank" class="list-group-item">4_3: scroll to fix by jquery</a>
+                    <a href="4_4_scroll2fix_bs4.html" target="_blank" class="list-group-item">4_4_scrolll to fix by bs4</a>
+                </div>
+
+
+                
+                <h2>Sec. 5 Scrolling detection</h2>
+                <div class="list-group">
+                    <a href="5_1_scroll_statusbar.html" target="_blank" class="list-group-item">5_1 Scroll to control status bar</a>
+                    <a href="5_1p_scroll_move_horizontal.html" target="_blank" class="list-group-item practice">5_1p Practice: Move something from right to left</a>
+                    <a href="5_2_scroll_video.html" target="_blank" class="list-group-item">5_2 Scroll to control video play</a>
+                    <a href="5_2p_scroll_img.html" target="_blank" class="list-group-item practice">5_2 Practice scroll to change images: Using jquery array</a>
+                    <a href="5_3_scroll_to_play.html" target="_blank" class="list-group-item">5_3 Scroll up/down to play different video clips</a>
+                    <a href="5_4_scroll_animate_css.html" target="_blank" class="list-group-item">5_4 Scroll to trigger animate.css</a>
+                    <a href="5_5_scroll_to_animate_keyframe.html" target="_blank" class="list-group-item">5_5 Scroll to trigger animation: keyframe</a>
+                    <a href="5_5_1_scroll_to_animate_keyframe_2.html" target="_blank" class="list-group-item">5_5_1 Scroll to trigger animation: keyframe2</a>
+                    <a href="13_4_comprehension4_comic_player.html" target="_blank" class="list-group-item next">(WAIT)13_4 Scrolling to trigger animation from different directions: Comic players</a>
+                    <a href="5_6_scroll_with_section.html" target="_blank" class="list-group-item">5_6 Scroll to tell story with sections:trigger multiple movies by sections</a>
+                    <a href="5_7_media_query.html" target="_blank" class="list-group-item">5_7 Media query</a>
+                    <a href="5_8_scrollspy_div.html" target="_blank" class="list-group-item">5_8 Scrollspy detect divs</a>
+                    <a href="5_9_waypoints.html" target="_blank" class="list-group-item">5_9 Scrollspy by waypoints</a>
+
+                </div>
+
+                <h2>Sec. 6 Chart presentation</h2>
+
+                <div class="list-group">
+                    <a href="6_1_animate_chart.html" target="_blank" class="list-group-item skip">6_1 Animating chart: the simplest method</a>
+                    <a href="6_2_animate_chart_keyframe.html" target="_blank" class="list-group-item">6_2 Animate_chart_keyframe</a>
+                    <a href="6_3_chart_js.html" target="_blank" class="list-group-item next">6_3_animate_chart_js</a>
+
+                </div>
+
+                <h2>Sec. 8 Parallax Scrolling Vertically</h2>
+                <div class="list-group">
+                    <a href="8_1_parallax_vertical1.html" target="_blank" class="list-group-item prev">8_1 Using id to assign different speed</a>
+                    <a href="8_1p_parallax_vertical.html" target="_blank" class="list-group-item practice">8_1p Using id to assign different speed</a>
+                    <a href="8_2_parallax_vertical2.html" target="_blank" class="list-group-item next">8_2 Using class and each to assign different speed</a>
+                    <a href="8_3_parallax_vertical3.html" target="_blank" class="list-group-item next">8_3 Using data- to assign position</a>
+                    <a href="8_4_parallax_vertical4.html" target="_blank" class="list-group-item next">8_4 Using data- to assign position and speed</a>
+                    <a href="8_5_parallax_vertical5.html" target="_blank" class="list-group-item next">8_5 Parallax scrolling with a leading div</a>
+                    <a href="8_6_parallax_comprehensive.html" target="_blank" class="list-group-item next">8_6 Parallax comprehensive</a>
+                    <a href="8_7_parallax_vertical7.html" target="_blank" class="list-group-item next">8_7 Parallax scrolling with vh</a>
+                </div>
+
+
+                <h2>Sec. 9 Area map</h2>
+                <div class="list-group">
+                    <a href="9_1_mapbox.html" target="_blank" class="list-group-item">Interactive Map by mapbox</a>
+                    <a href="../d3/d2_scrollmap/d3map.html" target="_blank" class="list-group-item">d3: scrolling map</a>
+                    <a href="../d3/d3_areamap/d3areamap.html" target="_blank" class="list-group-item">d3_3: areamap for population density</a>
+                    <a href="../d3/d4_areamap/d4areamap.html" target="_blank" class="list-group-item">d3_4: areamap for population density by index (Better))</a>
+                </div>
+
+                <h2>Sec. 10 Reading data</h2>
+                <div class="list-group">
+                    <a href="10_1_sheetData.html" target="_blank" class="list-group-item">Reading data from a published google sheet.</a>
+                    <a href="10_2_jqAJAX.html" target="_blank" class="list-group-item">Loading data by AJAX</a>
+                </div>
+
+
+                <h2>Sec. 11 Horizontal Scrolling</h2>
+                <div class="list-group">
+                    <a href="11_1_horizontal_div.html" target="_blank" class="list-group-item prev">11_1 Scrolling one div horizontally</a>
+                    <a href="11_2_horizontal_3div.html" target="_blank" class="list-group-item prev">11_2 Scrolling 3 divs horizontally</a>
+                    <a href="11_3_horizontal_image.html" target="_blank" class="list-group-item new">11_3 Scrolling images horizontally with a vertical scrolling block before</a>
+                    <a href="11_4_horizontal_comprehensive.html" target="_blank" class="list-group-item new">11_4 Horizontal Scrolling Comprehensive</a>
+                </div>
+
+                <h2>Sec. 12 Scrolling to animate</h2>
+                <div class="list-group">
+                    <a href="12_1_animate_storytelling.html" target="_blank" class="list-group-item">12_1 animate storytelling</a>
+                    <a href="12_2_animate_storytelling2.html" target="_blank" class="list-group-item">12_2 animate storytelling 2</a>
+                    <a href="12_3_animate_storytelling3.html" target="_blank" class="list-group-item">12_3 animate storytelling 3</a>
+                    <a href="12_4_animate_storytelling4.html" target="_blank" class="list-group-item">12_4 animate storytelling 4</a>
+                    <a href="12_5_animate_storytelling5.html" target="_blank" class="list-group-item">12_5 animate storytelling 5(Graphic Novel)</a>
+                    <a href="12_6_animate_storytelling6_bytransform.html" target="_blank" class="list-group-item">12_6 animate storytelling 6 by transform?</a>
+                </div>
+                <h2>Sec. 13 Comprehensive</h2>
+                <div class="list-group">
+                    <a href="13_1_comprehensive_image_story.html" target="_blank" class="list-group-item">13_1 Scroll to control image opacity</a>
+                    <a href="13_2_comprehension2.html" target="_blank" class="list-group-item">13_2 Scroll single div 1</a>
+                    <a href="13_3_comprehension3.html" target="_blank" class="list-group-item">13_3 Scroll single div 2</a>
+                    <a href="C_jquery%2520search/facebook2007.html" target="_blank" class="list-group-item">13_4 Search keywords by jquery</a>
+                    <a href="13_4_comprehension4_comic_player.html" target="_blank" class="list-group-item new">13_4 Scrolling to trigger animation from different directions: Comic players</a>
+                    <a href="13_5_comprehension5.html" target="_blank" class="list-group-item new">13_5 Animating svg by scrolling</a>
+                    <a href="13_6_comprehension6.html" target="_blank" class="list-group-item new">13_6 Triggering svg by scrolling</a>
+                </div>
+
+                <h2>Sec. 14 Playing multimedia</h2>
+                <div class="list-group">
+                    <a href="14_1_video%20player.html" target="_blank" class="list-group-item">14_1 Scroll to stop video playing</a>
+
+                </div>
+
+                <h2>Sec. 15 d3.js</h2>
+                <div class="list-group">
+                    <a href="../d3/d1_d3bar/d3bar.html" target="_blank" class="list-group-item">d3_1 Basic: Display bart chart by d3.js</a>
+
+                </div>
+
+                <h2>Appendix: Great Examples</h2>
+                <div class="list-group">
+                    <a href="ex_1_parallax_waypoints.html" target="_blank" class="list-group-item">ex_1 parallax + detecting in viewPort div</a>
+
+                </div>
+
+
+
+
+            </div>
+            <div class="col-md-4">
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+</body></html>
