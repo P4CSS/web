@@ -11,32 +11,23 @@
 
     <title>Hello, world!</title>
     <style>
-        #obj {
+        #horizontal {
             position: absolute;
             left: 0;
-            height: 50px;
-            width: 50px;
-            background-color: coral;
+            height: 100vh;
+            width: 300vw;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 1) 100%);
         }
 
     </style>
 </head>
 
 <body>
-    <div class="container-fluid" style="background-color:deepskyblue;min-height:200px;">
-        <h1>affix by jquery: min-hight: 200px</h1>
-    </div>
 
-    <div id="navbar" class="container-fluid sticky-top" style="background-color:rgb(64,64,64);min-height:50px;">
-        <div id="obj"></div>
-    </div>
-
-    <div class="container-fluid" style="min-height:1000px;">
-        <h1>Space: min-height:1000px</h1>
-    </div>
-
-    <div class="container-fluid" style="min-height:1000px;">
-        <h1>Space: min-height:1000px</h1>
+    <div style="min-height:1000vh">
+        <div class="sticky-top">
+            <div id="horizontal"></div>
+        </div>
     </div>
 
 
@@ -49,18 +40,14 @@
 
     <script>
         $(document).ready(function() {
-
-            var tofix1_height = $('#navbar').offset().top; //Reserve the original height
-            //            var tofix2_height = $('#tofix2').offset().top; //Reserve the original height
-
             $(window).scroll(function() {
                 var max_scroll = $(document).height() - $(window).height();
-                var max_w = $(window).width() - $('#obj').width();
+                var max_w = $('#horizontal').width() - $(window).width();
                 var current_pos = $(window).scrollTop();
                 console.log(current_pos);
 
-                var new_left = max_w * current_pos / max_scroll;
-                $('#obj').css({
+                var new_left = -1 * max_w * current_pos / max_scroll;
+                $('#horizontal').css({
                     'left': new_left
                 });
 
