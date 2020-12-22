@@ -53,6 +53,7 @@
         .space {
             min-height: 600px;
         }
+
     </style>
 </head>
 
@@ -199,10 +200,58 @@
             }
         });
 
-
+        map.addSource('maine', {
+            'type': 'geojson',
+            'data': {
+                'type': 'Feature',
+                'geometry': {
+                    'type': 'Polygon',
+                    "coordinates": [
+                        [
+                            [
+                                121.51726484298706,
+                                25.038881125051265
+                            ],
+                            [
+                                121.51750087738037,
+                                25.038638111097974
+                            ],
+                            [
+                                121.5178120136261,
+                                25.03861866996092
+                            ],
+                            [
+                                121.52436733245848,
+                                25.03542056096929
+                            ],
+                            [
+                                121.52523636817932,
+                                25.038307611348834
+                            ],
+                            [
+                                121.51816606521605,
+                                25.039201902732373
+                            ],
+                            [
+                                121.51771545410155,
+                                25.039483797577734
+                            ],
+                            [
+                                121.517254114151,
+                                25.03922134377699
+                            ],
+                            [
+                                121.51726484298706,
+                                25.038881125051265
+                            ]
+                        ]
+                    ]
+                }
+            }
+        });
 
         map.addLayer({
-            "id": "maine",
+            "id": "route",
             "type": "line",
             "source": "route",
             "layout": {
@@ -212,6 +261,16 @@
             "paint": {
                 "line-color": "#888",
                 "line-width": 8
+            }
+        });
+        map.addLayer({
+            'id': 'maine',
+            'type': 'fill',
+            'source': 'maine',
+            'layout': {},
+            'paint': {
+                'fill-color': '#588',
+                'fill-opacity': 0.8
             }
         });
 
@@ -307,6 +366,7 @@
         var bounds = element.getBoundingClientRect();
         return bounds.top < window.innerHeight && bounds.bottom > 0;
     }
+
 </script>
 
 </html>
