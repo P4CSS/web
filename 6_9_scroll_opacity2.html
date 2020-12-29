@@ -50,9 +50,9 @@
             <img id="bg-img" src="farm/Linpen2019_lg.jpg" style="position:absolute;transform:translateX(0%);transform:translateY(0%);transition:all 1s;">
         </div>
         <div id="mapmove" class="col-6" style="background-color:#ccc;height:400vh">
-            <div data-y="-50%" data-x="-10%" class="maploc"style="height:100vh;background-color:#AAA"></div>
-            <div data-y="-30%" data-x="-50%" class="maploc" style="height:100vh;background-color:#BBB"></div>
-            <div data-y="-60%" data-x="-20%" class="maploc" style="height:200vh;background-color:#CCC"></div>
+            <div data-y="-50%" data-x="-10%" data-scale="2" class="maploc"style="height:100vh;background-color:#AAA"></div>
+            <div data-y="-30%" data-x="-50%" data-scale="5" class="maploc" style="height:100vh;background-color:#BBB"></div>
+            <div data-y="-60%" data-x="-20%" data-scale="10" class="maploc" style="height:200vh;background-color:#CCC"></div>
         </div>
     </div>
     <div style="height:100vh;background-color: #333"></div>
@@ -87,15 +87,15 @@
                 var thispos = $(this).offset().top;
                 var thish = $(this).height();
                 if(scrolled >=  thispos && scrolled < thispos + thish){
-                    console.log("translate(" + $(this).data("x") + ", " + $(this).data("y") + ")");
+//                    console.log("translate(" + $(this).data("x") + ", " + $(this).data("y") + ")");
                     $("#bg-img").css({
-                        "transform": "translate(" + $(this).data("x") + ", " + $(this).data("y") + ")"
+                        "transform": "translate(" + $(this).data("x") + ", " + $(this).data("y") + ") scale("+$(this).data("scale")+")"
                     });
                 }
             });
             if(scrolled < $("#mapmove").offset().top || scrolled > $("#mapmove").offset().top +  $("#mapmove").height()){
                     $("#bg-img").css({
-                        "transform": "translate(0%, 0%)"
+                        "transform": "translate(0%, 0%) scale(1)"
                     });                
             }
             

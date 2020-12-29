@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,19 +18,28 @@
             opacity: 1;
         }
 
+        /*
         #bg-img {
             background-image: url(farm/Linpen2019_lg.jpg);
             background-position: 0 0;
-            animation: move 1s linear forwards;
-            
+            animation-duration: 1s;
+            animation-timing-function: linear;
+            animation-iteration-count: 1;
         }
-        
+*/
+
+        .transit-effect1 {
+            transition: bottom 1s;
+        }
+
     </style>
 
     <title>Hello, world!</title>
 </head>
 
 <body>
+    
+<!--SCENE I-->
     <div style="height:300vh;">
         <img src="farm/Linpen2006.jpg" class="opa img-fluid earth-img" data-seq=1 style="z-index:99;">
         <img src="farm/Linpen2010.jpg" class="opa img-fluid earth-img" data-seq=2 style="z-index:98;">
@@ -39,15 +49,26 @@
 
     </div>
     <div style="height:100vh;background-color: #333"></div>
+    
+<!--SCENE II-->
     <div class="row">
-        <div id="bg-img" class="col-6 sticky-top" style="height:100vh">
+        <div class="col-6 sticky-top" style="height:100vh;overflow:hidden;">
+            <img id="bg-img" src="farm/Linpen2019_lg.jpg" style="position:absolute;transform:translateX(0%);transform:translateY(0%);transition:all 1s;">
         </div>
-        <div class="col-6" style="background-color:#ccc;height:400vh">
-            <div id="loc1" class="maploc" data-bgpos="10% 10%" style="height:100vh;background-color:#AAA"></div>
-            <div id="loc2" class="maploc" data-bgpos="30% 40%" style="height:100vh;background-color:#BBB"></div>
-            <div id="loc3" class="maploc" data-bgpos="40% 20%" style="height:200vh;background-color:#CCC"></div>
+        <div id="mapmove" class="col-6" style="background-color:#ccc;height:400vh">
+            <div data-y="-50%" data-x="-10%" data-scale="2" class="maploc" style="height:100vh;background-color:#AAA"></div>
+            <div data-y="-30%" data-x="-50%" data-scale="5" class="maploc" style="height:100vh;background-color:#BBB"></div>
+            <div data-y="-60%" data-x="-20%" data-scale="10" class="maploc" style="height:200vh;background-color:#CCC"></div>
         </div>
     </div>
+    <div style="height:100vh;background-color: #333"></div>
+    
+    
+<!--SCENE III-->
+    <div class="" style="background-color:black;height:200vh;position:relative;overflow:hidden;">
+        <img class="scrollable" src="farm/Linpen2019_lg.jpg" data-top=-20 data-top2=-50 data-left=-100 data-left2=-20 data-width=300 data-width2=400 style="position:absolute;width:300vw;top:-20%;left:-100%">
+<!--        <img class="scrollable" data-left=-10 data-left2=0 data-top=-10  data-top2=40  src="assets/grass_1.png" style="position:absolute;width:150vw;top:-10%;left:-10%;filter: grayscale(60%)">-->
+    </div>    
     <div style="height:100vh;background-color: #333"></div>
 
     <!-- Optional JavaScript; choose one of the two! -->
@@ -65,10 +86,6 @@
     -->
 
     <script>
-        var loc2 = $("#loc2").offset().top;
-        var loc3 = $("#loc3").offset().top;
-        var loc2h = $("#loc2").height();
-        var loc3h = $("#loc3").height();
         $(window).scroll(function() {
             var scrolled = $(document).scrollTop();
             var winh = $(window).height();
@@ -78,18 +95,46 @@
                     "opacity": ($(this).data("seq") * opRange - scrolled) / opRange
                 });
             });
-            
-            
-            $(".maploc").each(function(){
+
+
+            $(".maploc").each(function() {
                 var thispos = $(this).offset().top;
                 var thish = $(this).height();
-                if(scrolled >=  thispos && scrolled < thispos + thish){
+                if (scrolled >= thispos && scrolled < thispos + thish) {
+                    //                    console.log("translate(" + $(this).data("x") + ", " + $(this).data("y") + ")");
                     $("#bg-img").css({
-                        "background-position": $(this).data("bgpos")
+                        "transform": "translate(" + $(this).data("x") + ", " + $(this).data("y") + ") scale(" + $(this).data("scale") + ")"
                     });
                 }
             });
+            if (scrolled < $("#mapmove").offset().top || scrolled > $("#mapmove").offset().top + $("#mapmove").height()) {
+                $("#bg-img").css({
+                    "transform": "translate(0%, 0%) scale(1)"
+                });
+            }
+            $(".scrollable").each(function() {
+                var parent_pos = $(this).parent().offset().top;
+                var next_pos = $(this).parent().next().offset().top;
+                var parent_height = $(this).parent().height();
+                var parent_scrolled = scrolled - $(this).parent().offset().top;
+                if (parent_scrolled > 0 && scrolled < next_pos - winh) {
+
+                    if ($(this).attr("data-left")) {
+                        $(this).css('left', (($(this).data('left2') - $(this).data('left')) * parent_scrolled / winh + $(this).data('left')) + '%');
+                    }
+                    if ($(this).attr("data-top")) {
+                        $(this).css('top', (($(this).data('top2') - $(this).data('top')) * parent_scrolled / winh + $(this).data('top')) + '%');
+                    }
+                    if ($(this).attr("data-width")) {
+                        $(this).css('width', (($(this).data('width2') - $(this).data('width')) * parent_scrolled / winh + $(this).data('width')) + '%');
+                    }
+                }
+            });
+
         });
+
     </script>
 
-</body></html>
+</body>
+
+</html>
