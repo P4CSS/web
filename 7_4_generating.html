@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <style>
+          .square{
+              background-color:beige;
+              border: 1px solid darkgrey;
+              border-radius: 10%;
+              width:50px;
+              height:50px;
+              margin:5px;
+              float:left;
+              box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+          }
+          .butterfly{
+              width:50px;
+              margin:5px;
+              float:left;  
+          }
+          .butterfly:hover{
+              filter: invert(46%) sepia(28%) saturate(5862%) hue-rotate(164deg) brightness(99%) contrast(103%);
+          }
+      
+      </style>
+  </head>
+  <body>
+      <div id="square"></div>
+      <script>
+          for(i=0; i<100; i++){
+              var random_color = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+                console.log(random_color);
+              $("#square").append("<div class='square' style='background-color:" + random_color + "'><p style='visibility:hidden;'>"+random_color+"</p></div>");  
+          }
+      </script>
+      
+      
+    <div class="container" style="clear:both"><h1>Butterfly generator</h1>
+        <p><a href="https://codepen.io/sosuke/pen/Pjoqqp">Convert RGB color to CSS filter</a></p>
+      </div>
+      <div id="butterfly"></div>
+      <script>
+          for(i=0; i<100; i++){
+              var rotate = Math.floor(Math.random()*180-90);
+              var tx = Math.floor(Math.random()*40-2);
+              $("#butterfly").append("<img class='butterfly' src='assets/butterfly.png' style='transform:rotate("+rotate+"deg) translateX(" + tx + "px)'>");  
+          }
+      </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <script>
+          $(".square").hover(
+              function(){$(this).find("p").css({"visibility":"visible"});},
+              function(){$(this).find("p").css({"visibility":"hidden"});}
+          );
+          
+      </script>
+  </body>
+</html>
