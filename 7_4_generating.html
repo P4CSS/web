@@ -25,11 +25,17 @@
               width:50px;
               margin:5px;
               float:left;  
+<<<<<<< HEAD
               transition:all 1s;
           }
           .butterfly:hover {
               filter: invert(46%) sepia(28%) saturate(5862%) hue-rotate(164deg) brightness(99%) contrast(103%);
 /*              transform: rotate(0.1turn);*/
+=======
+          }
+          .butterfly:hover{
+              filter: invert(46%) sepia(28%) saturate(5862%) hue-rotate(164deg) brightness(99%) contrast(103%);
+>>>>>>> 008306dad7a96128b7a6370f57c6054760a69dc5
           }
       
       </style>
@@ -39,7 +45,11 @@
       <script>
           for(i=0; i<100; i++){
               var random_color = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+<<<<<<< HEAD
 //                console.log(random_color);
+=======
+                console.log(random_color);
+>>>>>>> 008306dad7a96128b7a6370f57c6054760a69dc5
               $("#square").append("<div class='square' style='background-color:" + random_color + "'><p style='visibility:hidden;'>"+random_color+"</p></div>");  
           }
       </script>
@@ -53,9 +63,13 @@
           for(i=0; i<100; i++){
               var rotate = Math.floor(Math.random()*180-90);
               var tx = Math.floor(Math.random()*40-2);
+<<<<<<< HEAD
               $("#butterfly").append("<img class='butterfly' data-rotate=" + rotate + " data-translatex=" + tx + " src='assets/butterfly.png'>");
 //              
 //              
+=======
+              $("#butterfly").append("<img class='butterfly' src='assets/butterfly.png' style='transform:rotate("+rotate+"deg) translateX(" + tx + "px)'>");  
+>>>>>>> 008306dad7a96128b7a6370f57c6054760a69dc5
           }
       </script>
 
@@ -69,6 +83,7 @@
               function(){$(this).find("p").css({"visibility":"visible"});},
               function(){$(this).find("p").css({"visibility":"hidden"});}
           );
+<<<<<<< HEAD
         $(".butterfly").each(function(){
             $(this).css({"transform":"rotate("+$(this).data("rotate")+"deg)  translateX("+$(this).data("translatex")+"px)"});
         });
@@ -78,6 +93,8 @@
           );
 
           
+=======
+>>>>>>> 008306dad7a96128b7a6370f57c6054760a69dc5
           
       </script>
   </body>
