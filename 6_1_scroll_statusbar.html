@@ -12,9 +12,9 @@
   </head>
   <body>
     <div style="height:500px;background-color:dodgerblue"></div>
-    <div class="sticky-top" style="height:50px;background-color:dimgray">
-        <div id="statusbar" class="text-right" style="height:50px;width:0px;background-color:gold">
-            <p>Now <span id="perc"></span>%</p>
+    <div class="sticky-top" style="height:25px;background-color:dimgray">
+        <div id="statusbar" class="text-right" style="height:25px;width:0px;background-color:gold">
+          <p>Now: <span id="scrollperc">0</span>%</p>
         </div>
     </div>
     <div style="height:200vh;">
@@ -38,7 +38,7 @@
                 var current_pos = $(window).scrollTop();
                 var new_width = current_pos / max_scroll * winw;
                 $("#statusbar").css("width", new_width);
-                $("#perc").html(parseInt(current_pos/max_scroll*100));
+                $("#scrollperc").html(parseInt(current_pos / max_scroll * 100));
             });
         });
     </script>
