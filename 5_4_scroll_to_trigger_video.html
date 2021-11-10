@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        #video1,
+        #video2 {
+            width: 100vw;
+            /* height:50vh; */
+            z-index: -1;
+        }
+        /* #v1frame, #v2frame{
+            height:100vh;
+            overflow:hidden;
+        } */
+    </style>
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <div style="height: 100vh; background-color:royalblue;"></div>
+    <div id="v1frame" style="height:500vh">
+        <div class="sticky-top">
+            <video id="video1" src="assets/zoomout.mp4" class="video"></video>
+        </div>
+    </div>
+    <div style="height:100vh;background:grey;"></div>
+    <div id="v2frame" style="height:500vh">
+        <div class="sticky-top">
+            <video id="video2" src="assets/zoomin.mp4"></video>
+        </div>
+    </div>
+    <div style="height:100vh;background:grey;"></div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script>
+        $(document).ready(function () {
+            var video1_pos = $("#video1").offset().top;
+            console.log(video1_pos);
+            var video2_pos = $("#video2").offset().top;
+            var video1_end = $("#video1").offset().top + $("#v1frame").height();
+            var video2_end = $("#video2").offset().top + $("#v2frame").height();
+
+            $(window).scroll(function () {
+                var scroll = $(window).scrollTop();
+                var winh = $(window).height();
+                if (scroll > video1_pos && scroll < video1_end) {
+                    $("#video1")[0].play();
+                } else {
+                    $("#video1")[0].pause();
+                }
+                if (scroll > video2_pos && scroll < video2_end) {
+                    $("#video2")[0].play();
+                } else {
+                    $("#video2")[0].pause();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
