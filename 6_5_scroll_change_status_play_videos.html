@@ -13,7 +13,7 @@
     <div class="container-fluid" style="position:fixed;top:80vh;width:100%;background-color:red;height:1px;z-index:10"></div>
     <div class="container-fluid" style="min-height:1200px;background-color:lightgray"></div>
     <div class="container-fluid" style="padding:0px">
-        <video id="video1" src="https://p4css.github.io/webScroll/assets/zoomout.mp4" style="width:100%;"></video>
+        <video id="video1" src="https://p4css.github.io/webScroll/mov/forward.mp4" style="width:100%;"></video>
     </div>
     <div class="container-fluid" style="min-height:1200px;background-color:lightgray"></div>
 
@@ -29,14 +29,14 @@
                 if (current_pos > video_top - winh*0.5 && !$('#video1').hasClass("inversed")) {
                     $('#video1')[0].play();
                     $('#video1').on("ended", function() {
-                        $("#video1").attr("src", "https://p4css.github.io/webScroll/assets/zoomout.mp4");
+                        $("#video1").attr("src", "https://p4css.github.io/webScroll/mov/forward.mp4");
                         $("#video1").addClass("inversed");
                     });
                 }
                 if (current_pos < video_top && $('#video1').hasClass("inversed")) {
                     $('#video1')[0].play();
                     $('#video1').on("ended", function() {
-                        $("#video1").attr("src", "https://p4css.github.io/webScroll/assets/zoomin.mp4");
+                        $("#video1").attr("src", "https://p4css.github.io/webScroll/mov/backward.mp4");
                         $("#video1").removeClass("inversed");
                     });
                 }
