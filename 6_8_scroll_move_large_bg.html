@@ -38,10 +38,10 @@
         var winh = $(window).height();
         var winw = $(window).width();
         $(window).scroll(function(){
-            var current_pos = $(document).scrollTop();
-            if(current_pos > winh){
+            var scrolled = $(document).scrollTop();
+            if(scrolled > winh){
                 $("#bg").css("position", "fixed");
-                $("#bg").css("left", (-1)*winw*((current_pos-winh)/winh));
+                $("#bg").css("left", (-1)*winw*((scrolled-winh)/winh));
                 
             }
             

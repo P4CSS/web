@@ -23,18 +23,20 @@
         $(function() {
             var video_top = $('#video1').offset().top;
             $(window).scroll(function() {
-                var current_pos = $(window).scrollTop();
+                var scrolled = $(window).scrollTop();
                 var winh = $(window).height();
-                if (current_pos > video_top - winh*0.5 && !$('#video1').hasClass("inversed")) {
+                if (scrolled > video_top - winh*0.5 && !$('#video1').hasClass("inversed")) {
                     $('#video1')[0].play();
                     $('#video1').on("ended", function() {
+                        this.currentTime = 0;
                         $("#video1").attr("src", "https://p4css.github.io/webScroll/mov/forward.mp4");
                         $("#video1").addClass("inversed");
                     });
                 }
-                if (current_pos < video_top && $('#video1').hasClass("inversed")) {
+                if (scrolled < video_top && $('#video1').hasClass("inversed")) {
                     $('#video1')[0].play();
                     $('#video1').on("ended", function() {
+                        this.currentTime = 0;
                         $("#video1").attr("src", "https://github.com/P4CSS/webScroll/raw/main/mov/backward.mp4");
                         $("#video1").removeClass("inversed");
                     });

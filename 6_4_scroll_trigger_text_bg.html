@@ -59,10 +59,10 @@
 
     <script>
         $(window).scroll(function() {
-            var current_pos = $(document).scrollTop();
+            var scrolled = $(document).scrollTop();
             var winh = $(window).height();
             $(".spot").each(function() {
-                if (current_pos > $(this).offset().top - winh/2) {
+                if (scrolled > $(this).offset().top - winh/2) {
                     $(this).addClass("spotted");
                 }
             });

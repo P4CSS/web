@@ -89,7 +89,7 @@
     <script>
         $(function() {
             $(window).scroll(function() {
-                var scroll = $(window).scrollTop();
+                var scrolled = $(window).scrollTop();
                 var winheight = $(window).height();
                 var scrollamount = (scroll/($(document).height()-winheight)*100)
                 $("#bubbles1").css("top", -scroll* .2 + "px");
@@ -122,8 +122,8 @@
         //        function parallaxbubbles() {
         //            var scrolltop = window.pageYOffset // get number of pixels document has scrolled vertically
         //            var scrollamount = (scrolltop / (scrollheight - windowheight)) * 100 // get amount scrolled (in %)
-        //            bubble1.style.top = -scrolltop * .2 + 'px' // move bubble1 at 20% of scroll speed
-        //            bubble2.style.top = -scrolltop * .5 + 'px' // move bubble2 at 50% of scroll speed
+        //            bubble1.style.top = -scrolltop * .2 + 'px' // move bubble1 at 20% of scrolled speed
+        //            bubble2.style.top = -scrolltop * .5 + 'px' // move bubble2 at 50% of scrolled speed
         //            fish.style.left = -100 + scrollamount + '%'
         //
         //        }

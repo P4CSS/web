@@ -71,9 +71,9 @@
                 max_w = $("#horizontal").width() - $(window).width();
             });
             $(window).scroll(function () {
-                var current_pos = $(window).scrollTop();
-                if (current_pos > h_pos && current_pos < h_pos + hframe_h - winh) {
-                    var new_left = -1 * max_w * ((current_pos - h_pos) / (hframe_h - winh));
+                var scrolled = $(window).scrollTop();
+                if (scrolled > h_pos && scrolled < h_pos + hframe_h - winh) {
+                    var new_left = -1 * max_w * ((scrolled - h_pos) / (hframe_h - winh));
                     console.log(new_left);
                     $("#horizontal").css({
                         left: new_left

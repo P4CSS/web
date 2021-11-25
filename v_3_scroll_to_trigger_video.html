@@ -60,14 +60,14 @@
             var video2_end = $("#video2").offset().top + $("#v2frame").height();
 
             $(window).scroll(function () {
-                var scroll = $(window).scrollTop();
+                var scrolled = $(window).scrollTop();
                 var winh = $(window).height();
-                if (scroll > video1_pos && scroll < video1_end) {
+                if (scroll > video1_pos && scrolled < video1_end) {
                     $("#video1")[0].play();
                 } else {
                     $("#video1")[0].pause();
                 }
-                if (scroll > video2_pos && scroll < video2_end) {
+                if (scroll > video2_pos && scrolled < video2_end) {
                     $("#video2")[0].play();
                 } else {
                     $("#video2")[0].pause();

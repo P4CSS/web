@@ -35,10 +35,10 @@
             var max_scroll = doch - winh;
             
             $(window).scroll(function(){
-                var current_pos = $(window).scrollTop();
-                var new_width = current_pos / max_scroll * winw;
+                var scrolled = $(window).scrollTop();
+                var new_width = scrolled / max_scroll * winw;
                 $("#statusbar").css("width", new_width);
-                $("#scrollperc").html(parseInt(current_pos / max_scroll * 100));
+                $("#scrollperc").html(parseInt(scrolled / max_scroll * 100));
             });
         });
     </script>

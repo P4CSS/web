@@ -52,12 +52,12 @@
         $(window).scroll(function() {
             var winh = $(window).height();
             $(".slideanimate").each(function() {
-                var current_pos = $(window).scrollTop();
+                var scrolled = $(window).scrollTop();
                 var objpos = $(this).offset().top;
-                if (objpos < current_pos + winh * 0.8) {
+                if (objpos < scrolled + winh * 0.8) {
                     $(this).addClass("animated bounce delay-2s slide");
                 }
-                if (current_pos == 0) {
+                if (scrolled == 0) {
                     $(this).removeClass("animated bounce delay-2s slide");
                 }
             });

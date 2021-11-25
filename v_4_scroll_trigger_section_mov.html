@@ -74,7 +74,7 @@
             var div5_pos = $('#div5').offset().top; //Reserve the original height
 
             $(window).scroll(function() {
-                var scroll = $(window).scrollTop();
+                var scrolled = $(window).scrollTop();
                 var winh = $(window).height();
                 
                 if (scroll >= video1_pos) {
@@ -89,13 +89,13 @@
                 }
 
 
-                if (scroll > video1_pos - winh / 2 && scroll < div3_pos) {
+                if (scroll > video1_pos - winh / 2 && scrolled < div3_pos) {
                     $('#video1')[0].play();
                 } else {
                     $('#video1')[0].pause();
                 }
 
-                if (scroll > video2_pos - winh / 2 && scroll < div5_pos) {
+                if (scroll > video2_pos - winh / 2 && scrolled < div5_pos) {
                     $('#video2')[0].play();
                 } else {
                     $('#video2')[0].pause();

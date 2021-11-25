@@ -49,8 +49,8 @@
             $(window).scroll(function(e) {
                 var video = $('#video').get(0),
                     videoLength = video.duration,
-                    current_pos = $(document).scrollTop();
-                video.currentTime = videoLength * (current_pos / max_scroll);
+                    scrolled = $(document).scrollTop();
+                video.currentTime = videoLength * (scrolled / max_scroll);
             });
         });
     </script>

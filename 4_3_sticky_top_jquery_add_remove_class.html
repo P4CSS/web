@@ -68,15 +68,15 @@ n<!DOCTYPE html>
             var tofix2_height = $('#tofix2').offset().top; //Reserve the original height
 
             $(window).scroll(function() {
-                var current_pos = $(window).scrollTop();
-                console.log(current_pos);
-                if (current_pos >= tofix1_height) {
+                var scrolled = $(window).scrollTop();
+                console.log(scrolled);
+                if (scrolled >= tofix1_height) {
                     $('#tofix1').addClass('fixed');
                 } else {
                     $('#tofix1').removeClass('fixed');
                 }
 
-                if (current_pos >= tofix2_height - 100) {
+                if (scrolled >= tofix2_height - 100) {
                     $('#tofix2').addClass('fixed');
                 } else {
                     $('#tofix2').removeClass('fixed');

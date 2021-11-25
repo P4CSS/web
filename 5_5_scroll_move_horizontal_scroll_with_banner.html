@@ -54,13 +54,13 @@
 
     <script>
     $(window).scroll(function(){
-        var current_pos = $(document).scrollTop();
+        var scrolled = $(document).scrollTop();
         var winw = $(window).width();
         var outerh = $("#outer").height();
         var outer_pos = $("#outer").offset().top;
-        console.log(current_pos + "/" + outer_pos);
-        if(current_pos > outer_pos && current_pos <= outer_pos + outerh){
-            update_left = (-1)*($("#horizontal").width()-winw)*(current_pos - outer_pos)/outerh;
+        console.log(scrolled + "/" + outer_pos);
+        if(scrolled > outer_pos && scrolled <= outer_pos + outerh){
+            update_left = (-1)*($("#horizontal").width()-winw)*(scrolled - outer_pos)/outerh;
             console.log(update_left);
             $("#horizontal").css("left", update_left);
         }
