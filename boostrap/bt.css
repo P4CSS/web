@@ -73,7 +73,7 @@ dt {
 }
 
 #projects h4 {
-    color: royalblue;
+    color: dodgerblue;
 }
 
 #projects .thumbnail {
@@ -216,15 +216,15 @@ div#publications > p, div.flip > p:first-child{
     background-color: #f8f8f8;
     padding: 5px;
     margin-top: 10px;
-/*    box-shadow: 0px 1px 0px royalblue;*/
+/*    box-shadow: 0px 1px 0px dodgerblue;*/
     display: block;
-/*    color: royalblue;*/
+/*    color: dodgerblue;*/
     
 }
 div#publications > p:hover{
     color: white;
     background-color: darkgray;
-/*    box-shadow: 0px 2px 0px royalblue;*/
+/*    box-shadow: 0px 2px 0px dodgerblue;*/
     
 }
 
