@@ -91,9 +91,9 @@
             $(window).scroll(function() {
                 var scrolled = $(window).scrollTop();
                 var winheight = $(window).height();
-                var scrollamount = (scroll/($(document).height()-winheight)*100)
-                $("#bubbles1").css("top", -scroll* .2 + "px");
-                $("#bubbles2").css("top", -scroll* .5 + "px");
+                var scrollamount = (scrolled/($(document).height()-winheight)*100)
+                $("#bubbles1").css("top", -scrolled* .2 + "px");
+                $("#bubbles2").css("top", -scrolled* .5 + "px");
                 $("#fish").css("left", -100 + scrollamount + "%");
             });
         });
