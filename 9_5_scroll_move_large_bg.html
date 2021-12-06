@@ -14,9 +14,9 @@
         #bg {
             background-image: url("assets/stand90n.jpg");
             background-repeat: no-repeat;
-            background-attachment: static;
-            background-size: 180%;
-            background-position: fixed;
+            background-attachment: fixed;
+            background-size: 180vw;
+            background-position: 0 0;
         }
     </style>
 
@@ -24,9 +24,14 @@
 </head>
 
 <body>
-    <div id="main" style="height:1280vh">
-        <div id="bg" style="position:absolute;left:0;top:0;width:100vw;height:320vh;"></div>
+    <div id="bg" class="sticky-top" style="height:100vh;width:100vw;z-index:-1"></div>
+    <div class="loc" data-sx="0" data-sy="0" data-ex="0" data-ey="80" style="width:100vw;height:200vh;background:rgba(0,0,0,0.1);"></div>
+    <div class="loc" data-sx="0" data-sy="80" data-ex="120" data-ey="80" style="width:100vw;height:200vh;background:rgba(0,0,0,0.1);"></div>
+    <div class="loc" data-sx="120" data-sy="80" data-ex="120" data-ey="0" style="width:100vw;height:200vh;background:rgba(0,0,0,0.1);"></div>
+    <div class="loc" data-sx="120" data-sy="0" data-ex="0" data-ey="0" style="width:100vw;height:200vh;background:rgba(0,0,0,0.1);"></div>
     </div>
+    <div style="background:rgba(0,0,0,0.1);height:100vh"></div>
+    <div style="background:grey;height:100vh"></div>
 
 
 
@@ -43,11 +48,23 @@
         var winw = $(window).width();
         $(window).scroll(function () {
             var scrolled = $(document).scrollTop();
-            if (scrolled > winh) {
-                $("#bg").css("position", "fixed");
-                $("#bg").css("left", (-1) * winw * ((scrolled - winh) / winh));
+            $(".loc").each(function () {
+                var thispos = $(this).offset().top;
+                var thish = $(this).height();
+                if (scrolled >= thispos && scrolled < thispos + thish) {
+                    var perc = (scrolled - thispos) / thish;
+                    var newx = perc * ($(this).data("ex") - $(this).data("sx")) + $(this).data("sx");
+                    var newy = perc * ($(this).data("ey") - $(this).data("sy")) + $(this).data("sy");
+                    $("#bg").css("background-position", newx + "% " + newy + "%");
+                    console.log(newx + "% " + newy + "%");
+                }
 
-            }
+            });
+            // if (scrolled > winh) {
+            //     $("#bg").css("position", "fixed");
+            //     $("#bg").css("left", (-1) * winw * ((scrolled - winh) / winh));
+
+            // }
 
 
 
