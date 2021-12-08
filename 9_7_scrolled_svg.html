@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <style>
+        .earth-img {
+            position: fixed;
+            height: 100%;
+            object-fit: cover;
+            /*              object-position: right;*/
+            opacity: 1;
+        }
+
+        .transit-effect1 {
+            transition: bottom 1s;
+        }
+
+        .path {
+            stroke-dashoffset: 1000;
+            stroke-dasharray: 1000;
+        }
+    </style>
+
+    <title>Hello, world!</title>
+</head>
+
+<body>
+    <div style="height:100vh;background:deepskyblue"></div>
+    <div class="sticky-top" style="z-index:-1">
+        <svg id="svgobj" style="transition:all ease-in 1s;" height="200vh" viewBox="0 0 7200 4005" version="1.1"
+            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+            xmlns:serif="http://www.serif.com/"
+            style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+            <g transform="matrix(1.5,0,0,1.5,0,0)">
+                <!-- <use xlink:href="Linpen2019_lg.jpg" x="0" y="0" width="4800px" height="2670px"/> -->
+                <image href="images/Linpen2019_lg.jpg" x="0" y="0" width="4800px" height="2670px" />
+                <g id="fill1">
+                    <path d="M1220,1460L1420,1460L1480,1560L1430,1560L1300,1760L1260,1820L1130,1800L1220,1460Z"
+                        style="fill:none;fill-opacity:0.5;" />
+                    <path d="M940,1500L1160,1570L1120,1720L850,1670L940,1500Z" style="fill:none;fill-opacity:0.5;" />
+                </g>
+
+                <path id="path1" d="M970,2230L1171,1574.38"
+                    style="fill:none;stroke:blue;stroke-width:10px;" />
+
+                <g id="fill2">
+                    <path
+                        d="M1360,1010.57L1500,960L1620,920L1660,967.454L1611.38,1020L1560,1020L1540,1060L1420,1080L1291.73,1220L1340,1020L1360,1010.57Z"
+                        style="fill:none;fill-opacity:0.49;" />
+                </g>
+                <path id="path2" d="M1171,1584.38L1330,1010"
+                    style="fill:none;stroke:rgb(255,0,181);stroke-width:10px;" />
+
+                <path id="path3_1" d="M1330,1010L1540,190L1650,30"
+                    style="fill:none;stroke:LIME;stroke-width:10px;" />
+                <path id="path3_2" d="M1650,30L1820,120L2990,550L3800,1070"
+                    style="fill:none;stroke:LIME;stroke-width:10px;" />
+                <g id="fill3">
+                    <path d="M3560,1300L3680,1120L3780,1080L3840,1120L3680,1380L3560,1300Z"
+                        style="fill:none;fill-opacity:0.36;" />
+                    <path d="M3500,720L3560,640L3660,720L3600,800L3500,720Z" style="fill:none;fill-opacity:0.36;" />
+
+
+                </g>
+
+            </g>
+        </svg>
+    </div>
+    <div class="row">
+        <div class="col-6"></div>
+        <div class="col-6">
+            <div data-x="-10%" data-y="-50%" data-scale="1" data-fill="#fill1" data-path="#path1" class="maploc"
+                style="height:100vh;background:rgba(0,0,0,0.3)">
+                <h1 style="width:30vw;background:rgba(255,255,255,0.7);">Section 1</h1>
+            </div>
+            <div data-x="-10%" data-y="-30%" data-scale="1" data-fill="#fill2" data-path="#path2" class="maploc"
+                style="height:100vh;background:rgba(0,0,0,0.2)">
+                <h1 style="width:30vw;background:rgba(255,255,255,0.7);">Section 2</h1>
+            </div>
+            <div data-x="-10%" data-y="-0%" data-scale="1" data-fill="#fill3" data-path="#path3_1" class="maploc"
+                style="height:200vh;background:rgba(0,0,0,0.1)">
+                <h1 style="width:30vw;background:rgba(255,255,255,0.7);">Section 3_1</h1>
+            </div>
+            <div data-x="-60%" data-y="-10%" data-scale="1" data-fill="#fill3" data-path="#path3_2" class="maploc"
+                style="height:200vh;background:rgba(0,0,0,0.1)">
+                <h1 style="width:30vw;background:rgba(255,255,255,0.7);">Section 3_2</h1>
+            </div>
+        </div>
+    </div>
+    <div style="height:100vh;"></div>
+    <div style="height:100vh;background:grey"></div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
+
+
+    <script>
+        // $("#fill1 path").css("fill", "green");
+        // $("#svgobj").load("images/Linpen2019_lg.svg");
+        // $("#svgobj").load(function(){
+        //     var doc = this.getSVGDocument();
+        //     var obj = doc.getElementById("path2");
+        //     obj.css("stroke-width", "20px");
+        // });
+        // var triangle = document.getElementById("path2");
+        // var length = triangle.getTotalLength();
+        // console.log(length);
+        $(window).scroll(function () {
+            var scrolled = $(document).scrollTop();
+            var winh = $(window).height();
+
+            $(".maploc").each(function () {
+                var thispos = $(this).offset().top;
+                var thish = $(this).height();
+                if (scrolled >= thispos - winh/2 && scrolled < thispos + thish - winh/2) {
+                    var fill_id = $(this).data("fill");
+
+                    $(fill_id + " path").css("fill", "green");
+                    $("#svgobj").css({
+                        "transform": "translate(" + $(this).data("x") + ", " + $(this).data(
+                            "y") + ") scale(" + $(this).data("scale") + ")"
+                    });
+
+                    var path = $($(this).data("path"))[0];
+                    var length = path.getTotalLength();
+                    console.log(length);
+                    path.style.strokeDasharray = length;
+                    path.style.strokeDashoffset = length;
+                    var scrollpercent = (scrolled  - thispos + winh/2) / thish;
+                    var draw = length * scrollpercent;
+                    path.style.strokeDashoffset = length - draw;
+                    // https://www.w3schools.com/howto/howto_js_scrolldrawing.asp
+
+                }
+            });
+
+            if (scrolled == 0) {
+                $("svg g path").css({
+                    "fill": "none",
+                });
+                $("#svgobj").css("transform", "translate(0%, 0%) scale(1)");
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>
