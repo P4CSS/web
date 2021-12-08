@@ -22,11 +22,6 @@
         .transit-effect1 {
             transition: bottom 1s;
         }
-
-        .path {
-            stroke-dashoffset: 1000;
-            stroke-dasharray: 1000;
-        }
     </style>
 
     <title>Hello, world!</title>
@@ -49,7 +44,7 @@
                 </g>
 
                 <path id="path1" d="M970,2230L1171,1574.38"
-                    style="fill:none;stroke:blue;stroke-width:10px;" />
+                    style="fill:none;stroke:blue;stroke-width:10px;stroke-opacity:0;" />
 
                 <g id="fill2">
                     <path
@@ -57,12 +52,12 @@
                         style="fill:none;fill-opacity:0.49;" />
                 </g>
                 <path id="path2" d="M1171,1584.38L1330,1010"
-                    style="fill:none;stroke:rgb(255,0,181);stroke-width:10px;" />
+                    style="fill:none;stroke:rgb(255,0,181);stroke-width:10px;stroke-opacity:0;" />
 
                 <path id="path3_1" d="M1330,1010L1540,190L1650,30"
-                    style="fill:none;stroke:LIME;stroke-width:10px;" />
+                    style="fill:none;stroke:LIME;stroke-width:10px;stroke-opacity:0;" />
                 <path id="path3_2" d="M1650,30L1820,120L2990,550L3800,1070"
-                    style="fill:none;stroke:LIME;stroke-width:10px;" />
+                    style="fill:none;stroke:LIME;stroke-width:10px;stroke-opacity:0;" />
                 <g id="fill3">
                     <path d="M3560,1300L3680,1120L3780,1080L3840,1120L3680,1380L3560,1300Z"
                         style="fill:none;fill-opacity:0.36;" />
@@ -140,6 +135,7 @@
                     });
 
                     var path = $($(this).data("path"))[0];
+                    $($(this).data("path")).css("stroke-opacity", "1");
                     var length = path.getTotalLength();
                     console.log(length);
                     path.style.strokeDasharray = length;
