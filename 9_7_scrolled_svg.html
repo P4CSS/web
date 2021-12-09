@@ -65,6 +65,7 @@
 
 
                 </g>
+                <circle r="20" cy="0" cx="0" id="dot" style="fill:white" />
 
             </g>
         </svg>
@@ -125,7 +126,7 @@
             $(".maploc").each(function () {
                 var thispos = $(this).offset().top;
                 var thish = $(this).height();
-                if (scrolled >= thispos - winh/2 && scrolled < thispos + thish - winh/2) {
+                if (scrolled >= thispos - winh / 2 && scrolled < thispos + thish - winh / 2) {
                     var fill_id = $(this).data("fill");
 
                     $(fill_id + " path").css("fill", "green");
@@ -140,10 +141,14 @@
                     console.log(length);
                     path.style.strokeDasharray = length;
                     path.style.strokeDashoffset = length;
-                    var scrollpercent = (scrolled  - thispos + winh/2) / thish;
+                    var scrollpercent = (scrolled - thispos + winh / 2) / thish;
                     var draw = length * scrollpercent;
+                    var p = path.getPointAtLength(draw);
                     path.style.strokeDashoffset = length - draw;
+                    var dot = document.getElementById('dot');
+                    dot.setAttribute("transform", `translate(${p.x}, ${p.y})`);
                     // https://www.w3schools.com/howto/howto_js_scrolldrawing.asp
+                    // https://potatodie.nl/diffuse-write-ups/move-a-dot-along-a-path/
 
                 }
             });
