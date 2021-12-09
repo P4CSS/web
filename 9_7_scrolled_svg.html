@@ -132,10 +132,11 @@
             $(".maploc").each(function () {
                 var thispos = $(this).offset().top;
                 var thish = $(this).height();
-                if (scrolled >= thispos - winh / 2 && scrolled < thispos + thish - winh / 2) {
+                if (scrolled >= thispos && scrolled < thispos + thish){
                     var fill_id = $(this).data("fill");
-
                     $(fill_id + " path").css("fill", "green");
+                }
+                if (scrolled >= thispos - winh / 2 && scrolled < thispos + thish - winh / 2) {
                     $("#svgobj").css({
                         "transform": "translate(" + $(this).data("x") + ", " + $(this).data(
                             "y") + ") scale(" + $(this).data("scale") + ")"
