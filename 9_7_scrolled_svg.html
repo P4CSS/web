@@ -43,7 +43,7 @@
                     <path d="M940,1500L1160,1570L1120,1720L850,1670L940,1500Z" style="fill:none;fill-opacity:0.5;" />
                 </g>
 
-                <path id="path1" d="M970,2230L1171,1574.38"
+                <path id="path1" d="M970,2230L1171,1584"
                     style="fill:none;stroke:blue;stroke-width:10px;stroke-opacity:0;" />
 
                 <g id="fill2">
@@ -51,7 +51,7 @@
                         d="M1360,1010.57L1500,960L1620,920L1660,967.454L1611.38,1020L1560,1020L1540,1060L1420,1080L1291.73,1220L1340,1020L1360,1010.57Z"
                         style="fill:none;fill-opacity:0.49;" />
                 </g>
-                <path id="path2" d="M1171,1584.38L1330,1010"
+                <path id="path2" d="M1171,1584L1330,1010"
                     style="fill:none;stroke:rgb(255,0,181);stroke-width:10px;stroke-opacity:0;" />
 
                 <path id="path3_1" d="M1330,1010L1540,190L1650,30"
@@ -59,7 +59,7 @@
                 <path id="path3_2" d="M1650,30L1820,120L2405,335"
                     style="fill:none;stroke:LIME;stroke-width:10px;stroke-opacity:0;" />
                 <path id="path3_3" d="M2405,335L2990,550L3800,1070"
-                    style="fill:none;stroke:LIME;stroke-width:10px;stroke-opacity:0;" />
+                    style="fill:none;stroke:LIME;stroke-width:10px;stroke-opacity:0;" />    
                 <g id="fill3">
                     <path d="M3560,1300L3680,1120L3780,1080L3840,1120L3680,1380L3560,1300Z"
                         style="fill:none;fill-opacity:0.36;" />
@@ -87,14 +87,15 @@
                 style="height:200vh;background:rgba(0,0,0,0.1)">
                 <h1 style="width:30vw;background:rgba(255,255,255,0.7);">Section 3_1</h1>
             </div>
-            <div data-x="-20%" data-y="-0%" data-scale="1.2" data-fill="#fill3" data-path="#path3_2" class="maploc"
+            <div data-x="-30%" data-y="-1.5%" data-scale="1.2" data-fill="#fill3" data-path="#path3_2" class="maploc"
                 style="height:200vh;background:rgba(0,0,0,0.1)">
                 <h1 style="width:30vw;background:rgba(255,255,255,0.7);">Section 3_2</h1>
             </div>
-            <div data-x="-60%" data-y="-4%" data-scale="1.4" data-fill="#fill3" data-path="#path3_3" class="maploc"
-                style="height:200vh;background:rgba(0,0,0,0.1)">
-                <h1 style="width:30vw;background:rgba(255,255,255,0.7);">Section 3_2</h1>
-            </div>
+            <div data-x="-80%" data-y="-4%" data-scale="1.5" data-fill="#fill3" data-path="#path3_3" class="maploc"
+            style="height:400vh;background:rgba(0,0,0,0.1)">
+            <h1 style="width:30vw;background:rgba(255,255,255,0.7);">Section 3_3</h1>
+        </div>
+
         </div>
     </div>
     <div style="height:100vh;"></div>
@@ -115,16 +116,6 @@
 
 
     <script>
-        // $("#fill1 path").css("fill", "green");
-        // $("#svgobj").load("images/Linpen2019_lg.svg");
-        // $("#svgobj").load(function(){
-        //     var doc = this.getSVGDocument();
-        //     var obj = doc.getElementById("path2");
-        //     obj.css("stroke-width", "20px");
-        // });
-        // var triangle = document.getElementById("path2");
-        // var length = triangle.getTotalLength();
-        // console.log(length);
         $(window).scroll(function () {
             var scrolled = $(document).scrollTop();
             var winh = $(window).height();
@@ -132,16 +123,22 @@
             $(".maploc").each(function () {
                 var thispos = $(this).offset().top;
                 var thish = $(this).height();
+                
+                // filling polygon later
                 if (scrolled >= thispos && scrolled < thispos + thish){
                     var fill_id = $(this).data("fill");
                     $(fill_id + " path").css("fill", "green");
+                    // "#fill1 path"
                 }
+
                 if (scrolled >= thispos - winh / 2 && scrolled < thispos + thish - winh / 2) {
+                    // Moving bg image by transoform
                     $("#svgobj").css({
                         "transform": "translate(" + $(this).data("x") + ", " + $(this).data(
                             "y") + ") scale(" + $(this).data("scale") + ")"
                     });
 
+                    // Showing path with scrolled percentage
                     var path = $($(this).data("path"))[0];
                     $($(this).data("path")).css("stroke-opacity", "1");
                     var length = path.getTotalLength();
@@ -150,8 +147,10 @@
                     path.style.strokeDashoffset = length;
                     var scrollpercent = (scrolled - thispos + winh / 2) / thish;
                     var draw = length * scrollpercent;
-                    var p = path.getPointAtLength(draw);
                     path.style.strokeDashoffset = length - draw;
+
+                    //Showing dot with path
+                    var p = path.getPointAtLength(draw);
                     var dot = document.getElementById('dot');
                     dot.setAttribute("transform", `translate(${p.x}, ${p.y})`);
                     // https://www.w3schools.com/howto/howto_js_scrolldrawing.asp
