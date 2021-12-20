@@ -19,9 +19,9 @@
 
 <body>
     <div class="" style="background-color:black;height:100vh;">
-        <div id="vline" style="position:absolute;background-color:crimsom;height:100vh;width:2px;top:-30vh;left:14vw;trasition:transform 0.5s;"></div>
+        <!-- <div id="vline" style="position:absolute;background-color:crimsom;height:100vh;width:2px;top:-30vh;left:14vw;trasition:transform 0.5s;"></div> -->
     </div>
-    <div id="vline2" style="position:fixed;background-color:crimsom;height:100vh;width:5px;top:-20vh;left:15vw;trasition:transform 0.5s;z-index:999;"></div>
+<!-- <div id="vline2" style="position:fixed;background-color:crimsom;height:100vh;width:5px;top:-20vh;left:15vw;trasition:transform 0.5s;z-index:999;"></div> -->
     <div class="innershadow1" style="background-color:gold;min-height:25vh;position:relative;">
         <img src="novel/2/bg.jpg" style="width:100vw">
         <img id="testing" src="novel/2/chair.png" class="scrollable dropshadow1" style="position:absolute;
@@ -96,8 +96,8 @@
             $(window).scroll(function() {
                 var scrolled = $(window).scrollTop();
                 var winh = $(window).height();
-                $("#vline").css("transform", "translateY(" + scrolled / winh * 100 + "vh)");
-                $("#vline2").css("transform", "translateY(" + scrolled / scrolled * 100 - 30 + "vh)");
+                // $("#vline").css("transform", "translateY(" + scrolled / winh * 100 + "vh)");
+                // $("#vline2").css("transform", "translateY(" + scrolled / scrolled * 100 - 30 + "vh)");
 
                 $(".scrollable").each(function() {
                     var parent_pos = $(this).parent().offset().top;
