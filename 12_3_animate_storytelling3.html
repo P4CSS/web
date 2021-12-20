@@ -34,31 +34,26 @@
 </head>
 
 <body>
-    <div class="container-fluid" style="background-color:black;height:100vh;">
+    <div style="background-color:dodgerblue;height:100vh;">
     </div>
-    <div id="div1" class="container-fluid innershadow1" style="background-color:black;height:200vh;position:relative;">
+    <div id="div1" class="innershadow1" style="background-color:black;height:200vh;position:relative;">
         <img id="naruto1" data-top=15 data-top2=70 data-left=25 data-left2=35  data-width=20 data-width2=30 src="assets/naruto1.png" class="dropshadow1" style="position:absolute;width:20%;top:15%;left:25%;filter:grayscale(.3) blur(0px);">
         <img id="sasuke1" data-top=20 data-top2=80 data-left=50   data-left2=40 data-width=30 data-width2=40 src="assets/sasuke1.png" class="dropshadow1" style="position:absolute;width:30%;top:20%;left:50%;">
-
     </div>
-    <div id="space1" class="container-fluid" style="background-color:rgba(0,0,0,0.5);min-height: 1800px"></div>
-    <div id="div2" class="container-fluid" style="background-color:black;height:100vh;"></div>
-    <div class="container-fluid" style="background-color:darkgrey;min-height: 1800px"></div>
+    <div style="background-color:grey;height:100vh"></div>
 
 
 
     <script>
         $(document).ready(function() {
             var div1_pos = $("#div1").offset().top;
-            var space1_pos = $("#space1").offset().top;
+            var div1_end = div1_pos + $("#div1").height();
             var winh = $(window).height();
             $(window).scroll(function() {
                 var scrolled = $(window).scrollTop();
                 var div1_scrolled = scrolled - div1_pos;
                 var div1h = $("#div1").height();
-                if (div1_scrolled > 0 && scrolled < space1_pos - winh) {
-                    
-                    
+                if (div1_scrolled > 0 && scrolled < div1_end - winh) {
                     $("#naruto1").css('left', (($("#naruto1").data('left2')-$("#naruto1").data('left'))*div1_scrolled/winh + $("#naruto1").data('left')) + '%');
                     $("#naruto1").css('top', (($("#naruto1").data('top2')-$("#naruto1").data('top'))*div1_scrolled/winh + $("#naruto1").data('top')) + '%');
                     $("#naruto1").css('width', (($("#naruto1").data('width2')-$("#naruto1").data('width'))*div1_scrolled/winh + $("#naruto1").data('width')) + '%');
@@ -66,16 +61,6 @@
                     $("#sasuke1").css('left', (($("#sasuke1").data('left2')-$("#sasuke1").data('left'))*div1_scrolled/winh + $("#sasuke1").data('left')) + '%');
                     $("#sasuke1").css('top', (($("#sasuke1").data('top2')-$("#sasuke1").data('top'))*div1_scrolled/winh + $("#sasuke1").data('top')) + '%');
                     $("#sasuke1").css('width', (($("#sasuke1").data('width2')-$("#sasuke1").data('width'))*div1_scrolled/winh + $("#sasuke1").data('width')) + '%');
-//                    console.log("win_height:" + div1h + 
-//                                "\tscrollable_height:" + (space1_pos - winh) + 
-//                                "\tdiv1_scrolled:" + div1_scrolled
-//                               );
-//                    console.log("naruto_left:" + $("#naruto1").css('left') + 
-//                                "\tnaruto_top:" + $("#naruto1").css('top'));
-
-//                    console.log("div1_pos:" + div1_pos +
-//                        "\tscrolled:" + scrolled +
-//                        "\tspace1:" + space1_pos);
                 }
             });
         });
