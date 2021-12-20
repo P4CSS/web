@@ -43,35 +43,33 @@
 </head>
 
 <body>
-    <div class="container-fluid" style="background-color:black;height:100vh;">
-    </div>
+    <div style="background-color:dodgerblue;height:100vh"></div>
     <div id="div1" class="container-fluid innershadow1" style="background-color:black;height:200vh;position:relative;">
         <img class="scrollable dropshadow1" data-top=0 data-top2=70 data-left=25 data-left2=35 data-width=20 data-width2=30 src="assets/naruto1.png" style="position:absolute;width:20%;top:15%;left:25%;filter:grayscale(.3) blur(0px);">
         <img class="scrollable dropshadow1" data-top=20 data-top2=80 data-left=50 data-left2=40 data-width=30 data-width2=40 src="assets/sasuke1.png" style="position:absolute;width:30%;top:20%;left:50%;">
 
     </div>
-    <div class="container-fluid" style="background-color:rgba(0,0,0,0.5);min-height: 1800px"></div>
+    <div style="background-color:grey;height:100vh"></div>
+
     <div id="div2" class="container-fluid innershadow1" style="background-color:black;height:200vh;position:relative;">
         <img class="scrollable dropshadow1" data-top=0 data-top2=65 data-left=0 data-left2=45 data-width=20 data-width2=30 src="assets/naruto2.png" style="position:absolute;width:20%;top:0%;left:0%;filter:grayscale(.3) blur(0px);">
         <img class="scrollable dropshadow1" data-top=15 data-top2=80 data-left=15 data-left2=50 data-width=30 data-width2=40 src="assets/sasuke2.png" style="position:absolute;width:30%;top:15%;left:15%;">
     </div>
+    <div style="background-color:grey;height:100vh"></div>
 
-
-    <div class="container-fluid" style="background-color:darkgrey;min-height: 1800px"></div>
 
     <div id="div3" class="container-fluid innershadow1" style="background-color:black;height:200vh;position:relative;">
         <img class="scrollable dropshadow1" data-left=100 data-left2=60 src="assets/naruto3.png" style="position:absolute;width:20%;top:50%;left:100%;">
         <img class="scrollable dropshadow1" data-left=0 data-left2=30 src="assets/saruke3.png" style="position:absolute;width:30%;top:50%;left:0%;">
     </div>
-
-
-    <div class="container-fluid" style="background-color:darkgrey;min-height: 1800px"></div>
+    <div style="background-color:grey;height:100vh"></div>
     
     
     <div id="div4" class="container-fluid innershadow1" style="background-color:black;height:200vh;position:relative;">
         <img class="scrollable dropshadow1" data-left=100 data-left2=60 data-top=25 data-top2=75 src="assets/naruto3.png" style="position:absolute;width:20%;top:25%;left:100%;">
         <img class="scrollable dropshadow1" data-left=0 data-left2=30 data-top=25  data-top2=75  src="assets/saruke3.png" style="position:absolute;width:30%;top:25%;left:0%;">
     </div>
+    <div style="background-color:grey;height:100vh"></div>
 
     
     <div id="div5" class="innershadow1" style="background-color:black;height:200vh;position:relative;">
@@ -80,9 +78,7 @@
         <img class="scrollable dropshadow1" data-left=-10 data-left2=-20 data-top=10 data-top2=60 src="assets/forest.png" style="position:absolute;width:100vw;top:10%;left:-10%;">
         <img class="scrollable dropshadow1" data-left=0 data-left2=30 data-top=25  data-top2=75  src="assets/bike.png" style="position:absolute;width:30%;top:25%;left:0%;">
     </div>
-    
-
-    <div class="container-fluid" style="background-color:darkgrey;min-height: 1800px"></div>
+    <div style="background-color:grey;height:200vh"></div>
 
 
 
@@ -93,8 +89,7 @@
                 var scrolled = $(window).scrollTop();
                 $(".scrollable").each(function() {
                     var parent_pos = $(this).parent().offset().top;
-                    var next_pos = $(this).parent().next().offset().top;
-                    var parent_height = $(this).parent().height();
+                    var next_pos = parent_pos + $(this).parent().height();
                     var parent_scrolled = scrolled - $(this).parent().offset().top;
                     if (parent_scrolled > 0 && scrolled < next_pos - winh) {
 
