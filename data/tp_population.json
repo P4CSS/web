@@ -1,0 +1,14 @@
+[
+  { "dist": "松山區", "population": 194600, "area": 9.28 },
+  { "dist": "信義區", "population": 208665, "area": 11.2 },
+  { "dist": "大安區", "population": 292875, "area": 11.36 },
+  { "dist": "中山區", "population": 217277, "area": 13.68 },
+  { "dist": "中正區", "population": 151326, "area": 7.6 },
+  { "dist": "大同區", "population": 121468, "area": 5.68 },
+  { "dist": "萬華區", "population": 177799, "area": 8.85 },
+  { "dist": "文山區", "population": 262791, "area": 31.5 },
+  { "dist": "南港區", "population": 116419, "area": 21.84 },
+  { "dist": "內湖區", "population": 277880, "area": 31.57 },
+  { "dist": "士林區", "population": 271854, "area": 62.36 },
+  { "dist": "北投區", "population": 245345, "area": 56.82 }
+]
