@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台灣縣市人口密度地圖</title>
+
+    <!-- 最新版本的 CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        path {
+            cursor: pointer;
+            stroke: rgba(0, 0, 0, 0.5);
+            stroke-width: 1;
+            transition: all 0.3s ease;
+        }
+
+        #map_container {
+            position: fixed;
+            width: 100%;
+            margin-left: -30%;
+            z-index: -5;
+        }
+
+        #story {
+            background-color: rgba(200, 200, 200, 0.5);
+            padding: 20px;
+        }
+
+        .story {
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .story h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .space {
+            height: 50vh;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .col-md-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .col-md-6 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+
+            #map_container {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-md-6">
+            <div id="map_container">
+                <svg width="100%" height="100%" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid"></svg>
+            </div>
+        </div>
+
+        <div id="story" class="col-md-6">
+            <div class="space"></div>
+            <div id="嘉義市" class="story">
+                <h1>嘉義市</h1>
+            </div>
+            <div id="臺北市" class="story">
+                <h1>臺北市</h1>
+            </div>
+            <div id="高雄市" class="story">
+                <h1>高雄市</h1>
+            </div>
+            <div id="臺中市" class="story">
+                <h1>臺中市</h1>
+            </div>
+            <div id="屏東縣" class="story">
+                <h1>屏東縣</h1>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            async function initMap() {
+                try {
+                    // 載入人口密度數據
+                    const densityResponse = await fetch('density.json');
+                    let densityData = await densityResponse.json();
+
+                    densityData.shift();
+                    densityData.splice(-2, 2);
+
+                    const densityGroups = d3.group(densityData, d => d.site_id.substr(0, 3));
+                    const density = new Map();
+
+                    for (const [key, values] of densityGroups) {
+                        const population = d3.sum(values, d => +d.people_total);
+                        const area = d3.sum(values, d => +d.area);
+                        density.set(key, { density: population / area });
+                    }
+
+                    // 載入地圖數據
+                    const topoResponse = await fetch('county_moi.json');
+                    const topoData = await topoResponse.json();
+
+                    const features = topojson.feature(topoData, topoData.objects.COUNTY_MOI_1081121).features;
+
+                    const projection = d3.geoMercator().center([122, 23.25]).scale(6000);
+                    const path = d3.geoPath().projection(projection);
+
+                    const color = d3.scaleSqrt().domain([0, 10000]).range(["#090", "#f00"]);
+
+                    features.forEach(feature => {
+                        const countyData = density.get(feature.properties.COUNTYNAME);
+                        feature.density = countyData ? countyData.density : 0;
+                    });
+
+                    const svg = d3.select("#map_container svg");
+
+                    // 繪製地圖
+                    const paths = svg.selectAll("path")
+                        .data(features)
+                        .join("path")
+                        .attr("d", path)
+                        .attr("id", d => d.properties.COUNTYNAME)
+                        .attr("fill", d => color(d.density))
+                        .attr("opacity", 0.5);
+
+                    // 添加縣市名稱的文字元素
+                    const labels = svg.selectAll("text")
+                        .data(features)
+                        .join("text")
+                        .attr("x", d => path.centroid(d)[0])
+                        .attr("y", d => path.centroid(d)[1])
+                        .attr("text-anchor", "middle")
+                        .attr("font-size", "14px")
+                        .attr("fill", "#000")
+                        .attr("opacity", 0)
+                        .text(d => d.properties.COUNTYNAME);
+
+                    // Waypoints 設置
+                    $('.story').each(function () {
+                        new Waypoint({
+                            element: this,
+                            handler: function () {
+                                const countyId = $(this.element).attr('id');
+
+                                // 重置地圖樣式
+                                paths.transition()
+                                    .duration(300)
+                                    .attr('opacity', 0.5);
+
+                                labels.transition()
+                                    .duration(300)
+                                    .attr('opacity', 0);
+
+                                // 突顯選中縣市的路徑與文字
+                                paths.filter(`#${countyId}`)
+                                    .transition()
+                                    .duration(300)
+                                    .attr('opacity', 1.0);
+
+                                labels.filter(d => d.properties.COUNTYNAME === countyId)
+                                    .transition()
+                                    .duration(300)
+                                    .attr('opacity', 1.0);
+                            },
+                            offset: '30%',
+                            triggerOnce: true
+                        });
+                    });
+
+                } catch (error) {
+                    console.error('Error loading or processing data:', error);
+                }
+            }
+
+            // 啟動應用
+            initMap();
+        });
+
+    </script>
+</body>
+
+</html>

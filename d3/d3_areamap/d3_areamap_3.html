@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taiwan Area Map</title>
+    
+    <!-- Modern CDN Resources -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        path {
+            cursor: pointer;
+            stroke: rgba(0, 0, 0, 0.5);
+            stroke-width: 1;
+            transition: opacity 0.3s ease;
+        }
+        
+        #map_container {
+            position: fixed;
+            width: 50%;
+            height: 100vh;
+            left: 0;
+        }
+        
+        #map_container svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        #content_container {
+            position: relative;
+            width: 50%;
+            margin-left: 50%;
+            background-color: rgba(255, 255, 255, 0.9);
+            min-height: 100vh;
+        }
+        
+        #story {
+            padding: 20px;
+        }
+        
+        .story {
+            min-height: 100vh;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .story h1 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="map_container">
+        <svg preserveAspectRatio="xMidYMid"></svg>
+    </div>
+    
+    <div id="content_container">
+        <div id="story">
+            <div id="嘉義市" class="story">
+                <h1>嘉義市</h1>
+            </div>
+            <div id="臺北市" class="story">
+                <h1>臺北市</h1>
+            </div>
+            <div id="高雄市" class="story">
+                <h1>高雄市</h1>
+            </div>
+            <div id="臺中市" class="story">
+                <h1>臺中市</h1>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function type(d) {
+            d.value = +d.value;
+            return d;
+        }
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Fetch and process density data
+            const densityResponse = await fetch('density.json');
+            const densityData = await densityResponse.json();
+            densityData.shift();
+            densityData.splice(-2, 2);
+
+            const density = d3.group(densityData, d => d.site_id.substr(0, 3));
+            const densityMap = new Map();
+
+            for (const [key, value] of density) {
+                densityMap.set(key, {
+                    count: value.length,
+                    area: d3.sum(value, d => type(d.area)),
+                    population: d3.sum(value, d => type(d.people_total)),
+                    density: d3.sum(value, d => type(d.people_total)) / d3.sum(value, d => type(d.area)),
+                    town: value
+                });
+            }
+
+            // Fetch and process map data
+            const topoResponse = await fetch('county_moi.json');
+            const topoData = await topoResponse.json();
+            const features = topojson.feature(topoData, topoData.objects.COUNTY_MOI_1081121).features;
+
+            // Set up responsive SVG viewBox
+            const svg = d3.select("#map_container svg");
+            const width = 800;
+            const height = 600;
+            svg.attr("viewBox", `0 0 ${width} ${height}`);
+
+            // Map projection
+            const projection = d3.geoMercator()
+                .center([122, 23.25])
+                .scale(6000)
+                .translate([width / 2, height / 2]);
+
+            const path = d3.geoPath().projection(projection);
+
+            // Color scale
+            const color = d3.scaleSqrt()
+                .domain([0, 10000])
+                .range(["#090", "#f00"]);
+
+            // Add density data to features
+            features.forEach(feature => {
+                feature.density = densityMap.get(feature.properties.COUNTYNAME).density;
+            });
+
+            // Draw map
+            svg.selectAll("path")
+                .data(features)
+                .join("path")
+                .attr("d", path)
+                .attr("id", d => d.properties.COUNTYNAME)
+                .attr("fill", d => color(d.density))
+                .style("opacity", 0.5);
+
+            // Waypoints setup
+            $('.story').waypoint(function(direction) {
+                // Reset all paths
+                d3.selectAll('#map_container svg path')
+                    .style("opacity", 0.5);
+                
+                // Highlight selected path
+                const selectedId = this.element.id;
+                d3.select(`#map_container svg path#${selectedId}`)
+                    .style("opacity", 1.0);
+            }, {
+                offset: '30%',
+                triggerOnce: true
+            });
+        });
+    </script>
+</body>
+</html>

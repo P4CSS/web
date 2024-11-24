@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <title>您的名字</title>
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+            overflow: auto;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            text-align: center;
+            padding: 14px;
+            text-decoration: none;
+            color: black; /* 默認文字顏色 */
+        }
+
+        .navbar a.active {
+        background-color: pink; /* 當前部分的超鏈結背景色 */
+        }
+
+        .navbar a:hover {
+        background-color: #ddd;
+        }
+
+        .section {
+            min-height: 100vh;
+            /* 設置為視口高度 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #leading-page {
+            background-color: #f00;
+            /* 紅色 */
+        }
+
+        #self-introduction {
+            background-color: #0f0;
+            /* 綠色 */
+        }
+
+        #research {
+            background-color: #00f;
+            /* 藍色 */
+        }
+
+        #events {
+            background-color: #ff0;
+            /* 黃色 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="#leading-page">領先頁面</a>
+        <a href="#self-introduction">自我介紹</a>
+        <a href="#research">研究發表</a>
+        <a href="#events">近期活動</a>
+    </div>
+    <div id="leading-page" class="section">領先頁面</div>
+    <div id="self-introduction" class="section">自我介紹</div>
+    <div id="research" class="section">研究發表</div>
+    <div id="events" class="section">近期活動</div>
+    <script>
+        document.querySelectorAll('.navbar a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+            });
+        });
+
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                document.querySelectorAll('.navbar a').forEach(a => a.classList.remove('active'));
+                document.querySelector('.navbar a[href="#' + section.id + '"]').classList.add('active');
+            }
+            });
+        });
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水平滾動網頁</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
+        .full-page img {
+            width: 100%;
+            height: 100vh;
+            display: block;
+        }
+
+        .scroll-trigger {
+            height: 200vh;
+            /* Height of the vertical scrolling area */
+        }
+
+        .horizontal-scroll {
+            display: flex;
+            flex-direction: row;
+            width: 400vw;
+            overflow: hidden;
+        }
+
+        .horizontal-scroll img {
+            width: 100vw;
+            height: 100vh;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="full-page">
+        <img src="https://via.placeholder.com/1920x1080" alt="全屏大圖">
+    </div>
+    <div class="scroll-trigger" id="scroll-trigger"></div>
+    <div class="horizontal-scroll" id="horizontal-scroll">
+        <img src="https://via.placeholder.com/1920x1080/FF0000" alt="圖1">
+        <img src="https://via.placeholder.com/1920x1080/00FF00" alt="圖2">
+        <img src="https://via.placeholder.com/1920x1080/0000FF" alt="圖3">
+        <img src="https://via.placeholder.com/1920x1080/FFFF00" alt="圖4">
+    </div>
+    <script>
+        window.addEventListener('scroll', function () {
+            // Calculate the proportion of vertical scrolling
+            const scrollTriggerHeight = document.querySelector('.scroll-trigger').offsetHeight;
+            const proportion = window.scrollY / scrollTriggerHeight;
+
+            // Apply the proportion to the horizontal scroll
+            const horizontalScroll = document.querySelector('.horizontal-scroll');
+            const horizontalWidth = horizontalScroll.scrollWidth - window.innerWidth;
+            horizontalScroll.scrollLeft = proportion * horizontalWidth;
+        });
+
+
+    </script>
+</body>
+
+</html>
