@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>捲動視頻示例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .video-section {
+            position: relative;
+            height: 100vh;
+            background: #000;
+        }
+
+        .content-section {
+            height: 200vh;
+            background: linear-gradient(45deg, #2193b0, #6dd5ed);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-section {
+            height: 100vh;
+            background: linear-gradient(45deg, #373B44, #4286f4);
+            text-align: center;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .loading-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 200px;
+            z-index: 10;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #2193b0;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.5s;
+            z-index: 10;
+        }
+
+        .scroll-indicator.visible {
+            opacity: 1;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px 30px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        .play-button:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="video-section section">
+        <div class="loading-container">
+            <div class="loading-text">載入中...</div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <div class="loading-percentage">0%</div>
+        </div>
+        <video id="mainVideo" muted playsinline>
+            <source src="https://web.cw.com.tw/climate-2020/landing/cover.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="content-section section">
+        <div>
+            這是內容區塊<br>
+            (高度為 200vh)
+        </div>
+    </div>
+    <div class="footer-section section">
+        <div>
+            這是頁尾區塊<br>
+            (高度為 100vh)
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const video = document.getElementById('mainVideo');
+            const loadingContainer = document.querySelector('.loading-container');
+            const progressFill = document.querySelector('.progress-fill');
+            const loadingPercentage = document.querySelector('.loading-percentage');
+            let videoLoaded = false;
+            let minimumWatchTime = false;
+            let scrollEnabled = false;
+
+            const preventDefault = (e) => {
+                if (!scrollEnabled) {
+                    e.preventDefault();
+                }
+            };
+
+            document.addEventListener('wheel', preventDefault, { passive: false });
+            document.addEventListener('touchmove', preventDefault, { passive: false });
+
+            // 監聽影片載入進度
+            video.addEventListener('progress', () => {
+                if (video.buffered.length > 0) {
+                    const percentage = (video.buffered.end(0) / video.duration) * 100;
+                    progressFill.style.width = `${percentage}%`;
+                    loadingPercentage.textContent = `${Math.round(percentage)}%`;
+                }
+            });
+
+            // 當可以播放時
+            video.addEventListener('canplay', () => {
+                videoLoaded = true;
+                loadingContainer.style.display = 'none';
+                checkEnableScroll();
+            });
+
+            video.addEventListener('timeupdate', () => {
+                if (video.currentTime >= 5 && !minimumWatchTime) {
+                    minimumWatchTime = true;
+                    checkEnableScroll();
+                }
+            });
+
+            // 處理載入錯誤
+            video.addEventListener('error', () => {
+                loadingContainer.innerHTML = `
+                    <div class="loading-text" style="color: #ff4444;">
+                        影片載入失敗，請重新整理頁面
+                    </div>
+                `;
+            });
+
+            const checkEnableScroll = () => {
+                if (videoLoaded && minimumWatchTime) {
+                    scrollEnabled = true;
+                    showScrollIndicator();
+                }
+            };
+
+            const showScrollIndicator = () => {
+                const indicator = document.createElement('div');
+                indicator.className = 'scroll-indicator';
+                indicator.textContent = '向下捲動以繼續';
+                document.body.appendChild(indicator);
+                
+                setTimeout(() => {
+                    indicator.classList.add('visible');
+                }, 100);
+            };
+
+            video.play().catch(error => {
+                console.log('自動播放失敗:', error);
+                createPlayButton();
+            });
+
+            function createPlayButton() {
+                const playButton = document.createElement('button');
+                playButton.textContent = '點擊播放影片';
+                playButton.className = 'play-button';
+                
+                document.querySelector('.video-section').appendChild(playButton);
+                
+                playButton.addEventListener('click', () => {
+                    video.play();
+                    playButton.remove();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
